@@ -2,14 +2,13 @@
 //  ShopingCartViewController.m
 //  TangXianManual
 //
-//  Created by Han on 15/6/25.
-//  Copyright (c) 2015年 Han. All rights reserved.
+//  Created by Xydawn on 15/6/25.
+//  Copyright (c) 2015年 Xydawn. All rights reserved.
 //
 
 #import "ShopingCartViewController.h"
-#import "MBProgressHUD.h"
 #import "ShopingCartTableViewCell.h"
-#import "ShoppingcartModel.h"
+h"
 
 #define kShowTag1 5055
 #define kShowTag2 5050
@@ -85,7 +84,7 @@
 -(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     if (buttonIndex) {
         if (alertView.tag == kShowTag1) {
-            [self getDownloadWith:@"/webApi/App_Api.ashx?action=clearcart" With:^(id dict) {
+            [self getDownloadWith:@"" With:^(id dict) {
                 [self showHint:@"购物车已清空"];
                 [goodsArr removeAllObjects];
                 [table reloadData];
@@ -102,7 +101,7 @@
 #pragma mark购物车列表
 -(void)getShopCartDateRequst
 {
-    [self getDownloadWith:@"/webApi/App_Api.ashx?action=shoppingcart" With:^(id dict) {
+    [self getDownloadWith:@"" With:^(id dict) {
         _sumStr = [dict[@"totalprice"] floatValue];
         for (NSDictionary *dic in dict[@"cartlist"]) {
             ShoppingcartModel *model = [[ShoppingcartModel alloc]init];
@@ -246,7 +245,7 @@
         
         
         
-        [self getDownloadWith:@"/webApi/App_Api.ashx?action=delcart" With:^(id dict) {
+        [self getDownloadWith:@"" With:^(id dict) {
             [self showHint:@"删除成功"];
             _sumStr -=[cartModel.adjustedprice floatValue]*[cartModel.quantity integerValue];
             if (cartModel.isSelected==YES) {
@@ -341,7 +340,7 @@
     NSString * numStr = [NSString stringWithFormat:@"%@",cartModel.quantity];
     
     
-    [self getDownloadWith:@"/webApi/App_Api.ashx?action=updatecartinfo" With:^(id dict) {
+    [self getDownloadWith:@"" With:^(id dict) {
         [self showHint:@"修改成功"];
         cartModel.quantity =dict[@"quantity"];
         _sumStr += [cartModel.adjustedprice floatValue]*_changeCount;
@@ -388,7 +387,7 @@
     
     NSString * numStr = [NSString stringWithFormat:@"%d",[cartModel.quantity intValue]+1 ];
     
-    [self getDownloadWith:@"/webApi/App_Api.ashx?action=updatecartinfo" With:^(id dict) {
+    [self getDownloadWith:@"" With:^(id dict) {
          cartModel.quantity = dict[@"quantity"];
 //        [goodsArr replaceObjectAtIndex: send.tag -1000 withObject:cartModel];
          _sumStr =_sumStr+[cartModel.adjustedprice floatValue];
@@ -426,7 +425,7 @@
     
     NSString * numStr = [NSString stringWithFormat:@"%d",[cartModel.quantity intValue]-1 ];
     
-    [self getDownloadWith:@"/webApi/App_Api.ashx?action=updatecartinfo" With:^(id dict) {
+    [self getDownloadWith:@"" With:^(id dict) {
         cartModel.quantity = dict[@"quantity"];
 //        [goodsArr replaceObjectAtIndex: send.tag -2000 withObject:cartModel];
         _sumStr =_sumStr-[cartModel.adjustedprice floatValue];
