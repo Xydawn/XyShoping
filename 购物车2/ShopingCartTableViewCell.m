@@ -3,7 +3,7 @@
 //  TangXianManual
 //
 //  Created by Han on 15/6/25.
-//  Copyright (c) 2015年 Han. All rights reserved.
+//  Copyright (c) 2015年 Xydawn. All rights reserved.
 //
 
 #import "ShopingCartTableViewCell.h"
